@@ -26,10 +26,12 @@ History
 Install
 =======
 
-you will need the optimist library
-
-      npm install optimist
-
 clone the git project:
 
      git clone http://github.com/hazlema/Sweep-NodeJS.git
+
+Make it a system utility (unix)
+
+	sudo mkdir /usr/lib/sweep
+	sudo mv * /usr/lib/sweep/.
+	sudo ln -s /usr/lib/sweep/sweep.js /usr/bin/sweep
