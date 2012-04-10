@@ -1,14 +1,30 @@
-* Sweep - Written for NodeJS
- 
-Author:
-Matthew Hazlett
-Clarity Computers
+Sweep
+=====
 
-A quick and dirty node app:
-Deletes the crap outta your directories before you post to git
-Should work cross platform (as is)
+Sweep is a utility that will recursivly delete
+a specified file mask starting from your current
+directory.
 
-Add whatever extentions you want to the 
-del array to sweep those files
+Examples
+========
 
-You may want to change startDir to __dirname
+Quiet Mode
+----------
+
+     $ node ./sweep.js --quiet --ext bak,tmp,temp,save
+
+Lots of output
+--------------
+
+     $ node ./sweep.js --ext bak,tmp,temp,save
+
+Install
+=======
+
+you will need the optimist library
+
+      npm install optimist
+
+clone the git project:
+
+     git clone http://github.com/hazlema/Sweep-NodeJS.git

@@ -1,7 +1,8 @@
+#!/usr/bin/env node
 /***
- * Sweep
+ * Sweep, ver 2
  * Written for NodeJS
- * 
+ *
  * Author:
  * Matthew Hazlett
  * Clarity Computers
@@ -10,45 +11,73 @@
  * Deletes the crap outta your directories before you post to git
  * Should work cross platform (as is)
  *
- * Add whatever extentions you want to the 
- * del array to sweep those files
- *
- * You may want to change startDir to __dirname
+ * Uses: optimist, a commandline parsing library
+ *       https://github.com/substack/node-optimist
  */
-var fs       = require('fs'),
-    startDir = 'c:/inetpub',
-    del      = ['bak', 'save', 'tmp'],
-    patterns = [];
-    
-function getDir(dir) {
-      var files = fs.readdirSync(dir);
+var  fs  = require('fs'),
+     opt = require('optimist')
+                .usage("\nDelete files recursivly\nUsage $0 --ext bat,bak,tmp")
+                .demand('ext')
+                .describe('ext', 'List of file extensions')
+                .describe('quiet', 'Stealth mode' )
+                .argv,
+     ext   = opt.ext.split(','),
+     quiet = opt.quiet ? true : false,
+     patterns = [];
 
-      files.forEach(function(file) {
-            var stats = fs.statSync(dir + '/' + file);
-      
-            if (stats.isDirectory()) {
-                  getDir(dir + '/' + file);
-            } else {
-                  patterns.forEach( function(pattern) {
-                        if (pattern.test(file)) {
-                              console.log('Del: %s', dir + '/' + file);
-                              try {
-                                    fs.unlinkSync(dir + '/' + file);
-                              } catch(err) {
-                                    console.log(err);
-                              }
-                        }
-                  });
-            }
-      });
-}     
+// Get the files status
+//
+function tryStatus(file){
+        var status = false;
+
+        try {
+                status = fs.statSync(file);
+        } catch (err) {
+                if (!quiet) console.log(err);
+        }
+
+        return status;
+}
+
+// Delete the file
+//
+function tryDelete(file){
+        try {
+                fs.unlinkSync(file);
+        } catch (err) {
+                if (!quiet) console.log(err);
+        }
+}
+
+function sweep(dir) {
+        if (!quiet) console.log('Processing %s...', dir);
+
+        var allFiles = fs.readdirSync(dir);
+
+        allFiles.forEach(function (file) {
+                status = tryStatus(dir + '/' + file);
+
+                if (status && status.isDirectory()) {
+                        sweep(dir + '/' + file);
+                }
+                else if (status && status.isFile()) {
+                        patterns.forEach(function (thisPat) {
+                                if (thisPat.test(file)) {
+                                        if (!quiet) console.log('Del: %s', dir + '/' + file);
+                                        tryDelete(dir + '/' + file);
+                                }
+                        })
+                }
+        })
+}
+
 
 // Build the regex's for faster processing
 //
-del.forEach( function(ext) {
-      patterns.push(new RegExp(ext + '$', 'i'));
+ext.forEach(function (ext) {
+        patterns.push(new RegExp(ext + '$', 'i'));
 });
 
 // Start er up
 //
-getDir(startDir);
+sweep(__dirname);
