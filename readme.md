@@ -18,6 +18,11 @@ Lots of output
 
      $ node ./sweep.js --ext bak,tmp,temp,save
 
+History
+=======
+- 4/8/2012: Inital Release
+- 4/9/2012: Ignore Symbolic Link's
+
 Install
 =======
 
