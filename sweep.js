@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /***
- * Sweep, ver 2
+ * Sweep
  * Written for NodeJS
  *
  * Author:
@@ -11,8 +11,10 @@
  * Deletes the crap outta your directories before you post to git
  * Should work cross platform (as is)
  *
- * Uses: optimist, a commandline parsing library
- *       https://github.com/substack/node-optimist
+ * Add whatever extentions you want to the
+ * del array to sweep those files
+ *
+ * You may want to change startDir to __dirname
  */
 var  fs  = require('fs'),
      opt = require('optimist')
@@ -29,13 +31,13 @@ var  fs  = require('fs'),
 //
 function tryStatus(file){
         var status = false;
-
+        
         try {
-                status = fs.statSync(file);
+                status = fs.lstatSync(file);
         } catch (err) {
                 if (!quiet) console.log(err);
         }
-
+        
         return status;
 }
 
@@ -53,13 +55,13 @@ function sweep(dir) {
         if (!quiet) console.log('Processing %s...', dir);
 
         var allFiles = fs.readdirSync(dir);
-
+        
         allFiles.forEach(function (file) {
                 status = tryStatus(dir + '/' + file);
 
-                if (status && status.isDirectory()) {
+                if (status && (status.isDirectory() && !status.isSymbolicLink())) {
                         sweep(dir + '/' + file);
-                }
+                } 
                 else if (status && status.isFile()) {
                         patterns.forEach(function (thisPat) {
                                 if (thisPat.test(file)) {
@@ -80,4 +82,4 @@ ext.forEach(function (ext) {
 
 // Start er up
 //
-sweep(__dirname);
+sweep('.');
