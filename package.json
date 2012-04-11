@@ -1,0 +1,29 @@
+ {
+    "name" : "sweep",
+    "version" : "1.0.2",
+    "author": "Matthew Hazlett (hazlema@devclarity.com>",
+    "description" : "Clean your directories of unwanted files.",
+    "main" : "./sweep.js",
+    "dependencies" : {
+        "optimist" : ">=0.0.1 <0.3.1",
+        "wordwrap" : ">=0.0.1 <0.1.0"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "https://github.com/hazlema/Sweep-NodeJS.git"
+    },
+    "keywords" : [
+        "directory",
+        "dir",
+        "folder",
+        "files",
+        "del",
+        "delete",
+        "unlink",
+        "recursive"
+    ],
+    "license" : "MIT/X11",
+    "engine" : {
+        "node" : ">=0.6.14"
+    }
+}
