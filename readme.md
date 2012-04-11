@@ -20,8 +20,9 @@ Lots of output
 
 History
 =======
-- 4/8/2012: Initial Release
-- 4/9/2012: Ignore Symbolic Link's
+- 04/08/2012: Initial Release
+- 04/09/2012: Ignore Symbolic Link's
+- 04/10/2012: Package.json Created
 
 Install
 =======

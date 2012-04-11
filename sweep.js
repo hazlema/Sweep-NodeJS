@@ -6,10 +6,6 @@
  * Author:
  * Matthew Hazlett
  * Clarity Computers
- *
- * A quick and dirty node app:
- * Deletes the crap outta your directories before you post to git
- * Should work cross platform (as is)
  */
 var  fs  = require('fs'),
      opt = require('optimist')
