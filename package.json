@@ -1,5 +1,5 @@
  {
-    "name" : "sweep",
+    "name" : "sweep-node",
     "version" : "1.0.2",
     "author": "Matthew Hazlett (hazlema@devclarity.com>",
     "description" : "Clean your directories of unwanted files.",
