@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Sweep-nodejs : Sweep is a utility that will recursivly delete a specified file mask starting from your current directory." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Sweep-nodejs</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/hazlema/Sweep-NodeJS">View on GitHub</a>
+
+          <h1 id="project_title">Sweep-nodejs</h1>
+          <h2 id="project_tagline">Sweep is a utility that will recursivly delete a specified file mask starting from your current directory.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/hazlema/Sweep-NodeJS/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/hazlema/Sweep-NodeJS/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Sweep</h1>
+
+<p>Sweep is a utility that will recursively delete
+a specified file mask starting from your current
+directory.</p>
+
+<h2>Examples</h2>
+
+<h3>Quiet Mode</h3>
+
+<pre><code> $ node ./sweep.js --quiet --ext bak,tmp,temp,save
+</code></pre>
+
+<h3>Lots of output</h3>
+
+<pre><code> $ node ./sweep.js --ext bak,tmp,temp,save
+</code></pre>
+
+<h2>History</h2>
+
+<ul>
+<li>04/08/2012: Initial Release</li>
+<li>04/09/2012: Ignore Symbolic Link's</li>
+<li>04/10/2012: Package.json Created</li>
+</ul><h2>Install</h2>
+
+<p><strong>clone the git project:</strong></p>
+
+<pre><code> git clone http://github.com/hazlema/Sweep-NodeJS.git
+</code></pre>
+
+<p><strong>Make it a system utility (unix)</strong></p>
+
+<pre><code>sudo mkdir /usr/lib/sweep
+sudo mv * /usr/lib/sweep/.
+sudo chmod +x /usr/lib/sweep/sweep.js
+sudo ln -s /usr/lib/sweep/sweep.js /usr/bin/sweep
+</code></pre>
+
+<p><strong>Make it a system utility (windows)</strong></p>
+
+<pre><code>Create: directory c:\Utils 
+Copy:   everything to that directory
+Open:   Start -&gt; Control Panel -&gt; System -&gt; Advanced System Settings
+Click:  Environment Variables
+Edit:   In the box that's called 'System Variables' look for the PATH variable and double click
+Type:   C:\Utils; (at the start of the line)
+Click:  OK
+Click:  OK
+</code></pre>
+
+<p><strong>Platform note</strong></p>
+
+<pre><code>Isn't windows 8 step process so much easier then unix's 4 steps :-)
+</code></pre>
+
+<h2>Inspiration</h2>
+
+<pre><code>Inspired by one of my all time favorite DOS applications that shared the same name.
+(I think sweep for DOS was about 15 years ago, time for a port :-))
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Sweep-nodejs maintained by <a href="https://github.com/hazlema">hazlema</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
